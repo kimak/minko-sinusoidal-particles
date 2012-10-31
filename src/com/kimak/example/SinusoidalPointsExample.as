@@ -13,7 +13,7 @@ public class SinusoidalPointsExample extends MinkoExampleApplication {
 
 
     private const GLOBAL_SPEED:Number = 4.0;
-    private var global_particles:Number = 0.5;
+    private const GLOBAL_PARTICLES:Number = 0.5;
 
     public function SinusoidalPointsExample() {
         // Set this property to choose mobile target for stage.fullscreenWidth value instead of wrong stage.stageWidth value
@@ -122,7 +122,7 @@ public class SinusoidalPointsExample extends MinkoExampleApplication {
 
         var parameters:Object = {pointSize:lineVo.pointSize, amplitude:lineVo.amplitude, frequence:lineVo.frequence, moveX:0, shift:lineVo.shift, offsetX:lineVo.offsetX};
 
-        var line:Mesh = new Mesh(new SinusoidalPointsGeometry(lineVo.numPoints * global_particles, lineVo.color, lineVo.alpha, lineVo.randomize),
+        var line:Mesh = new Mesh(new SinusoidalPointsGeometry(lineVo.numPoints * GLOBAL_PARTICLES, lineVo.color, lineVo.alpha, lineVo.randomize),
                 new Material(
                         _shaderEffect,
                         parameters
