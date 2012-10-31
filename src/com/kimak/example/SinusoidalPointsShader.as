@@ -83,11 +83,7 @@ public class SinusoidalPointsShader extends Shader {
 
         position.y = multiply(amplitude, sin(angle));
 
-
-        if (!meshBindings.propertyExists('disableShift')) {
-
-            position = add(position, float4(0, power(multiply(shift, shiftValue), 1.5), 0, 0));
-        }
+        position = add(position, float4(0, power(multiply(shift, shiftValue), 1.5), 0, 0));
 
         position = localToView(position);
         position.incrementBy(corner);
@@ -103,7 +99,6 @@ public class SinusoidalPointsShader extends Shader {
 
         var random:SFloat = interpolate(getVertexAttribute(RANDOM_OFFSET).y);
         d = subtract(1, multiply(d, 4));
-
 
         kill(subtract(d, .2));
 

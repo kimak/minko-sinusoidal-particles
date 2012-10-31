@@ -16,7 +16,7 @@ public class MinkoExampleApplication extends Sprite {
 
     private var _scene:Scene = new Scene();
 
-    private var _buildOnMobile:Boolean;
+    private var _buildForMobile:Boolean;
 
     protected function get viewport():Viewport {
         return _viewport;
@@ -41,8 +41,6 @@ public class MinkoExampleApplication extends Sprite {
         removeEventListener(Event.ADDED_TO_STAGE, initialize);
 
         _viewport = new Viewport(0, stageWidth, stageHeight);
-
-        Minko.debugLevel = DebugLevel.SHADER_WARNING;
 
         stage.addChildAt(_viewport, 0);
 
@@ -70,7 +68,7 @@ public class MinkoExampleApplication extends Sprite {
      *@see http://www.adobe.com/devnet/air/articles/multiple-screen-sizes.html
      */
     public function get stageWidth():Number {
-        if (_buildOnMobile) return stage.fullScreenWidth;
+        if (_buildForMobile) return stage.fullScreenWidth;
         return stage.stageWidth;
     }
 
@@ -80,13 +78,13 @@ public class MinkoExampleApplication extends Sprite {
      *@see http://www.adobe.com/devnet/air/articles/multiple-screen-sizes.html
      */
     public function get stageHeight():Number {
-        if (_buildOnMobile) return stage.fullScreenHeight;
+        if (_buildForMobile) return stage.fullScreenHeight;
         return stage.stageHeight;
     }
 
 
-    public function set buildOnMobile(value:Boolean):void {
-        _buildOnMobile = value;
+    public function set buildForMobile(value:Boolean):void {
+        _buildForMobile = value;
     }
 }
 }

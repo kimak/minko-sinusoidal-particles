@@ -13,10 +13,11 @@ public class SinusoidalPointsExample extends MinkoExampleApplication {
 
 
     private const GLOBAL_SPEED:Number = 4.0;
+    private var global_particles:Number = 0.5;
 
     public function SinusoidalPointsExample() {
         // Set this property to choose mobile target for stage.fullscreenWidth value instead of wrong stage.stageWidth value
-        this.buildOnMobile = true;
+        this.buildForMobile = true;
 
         super();
     }
@@ -34,9 +35,9 @@ public class SinusoidalPointsExample extends MinkoExampleApplication {
 
         var lineVo:LineVo = new LineVo();
 
-        lineVo.numPoints = stageWidth * 1.8;
+        lineVo.numPoints = stageWidth * 4;
         lineVo.y = 0;
-        lineVo.alpha = 0.1;
+        lineVo.alpha = 0.2;
         lineVo.randomize = false;
         lineVo.pointSize = 0.015;
         lineVo.amplitude = 0.22;
@@ -44,18 +45,20 @@ public class SinusoidalPointsExample extends MinkoExampleApplication {
         lineVo.speedOffsetX = 0.001;
         lineVo.shift = 0.0;
         lineVo.color = 0.0;
-        lineVo.offsetX = 0.0;
+        lineVo.offsetX = -0.05;
         createLineFromVo(lineVo);
 
-
-        //use same other parameters than before
-        lineVo.numPoints = stageWidth * 1.5;
+        lineVo.numPoints = stageWidth * 1.0;
         lineVo.y = -0.02;
         lineVo.alpha = 0.5;
         lineVo.randomize = true;
+        lineVo.pointSize = 0.015;
+        lineVo.amplitude = 0.22;
+        lineVo.frequence = 3.2;
         lineVo.speedOffsetX = 0.001;
         lineVo.pointSize = 0.007;
         lineVo.shift = 0.1;
+        lineVo.color = 0.0;
         lineVo.offsetX = -0.05;
         createLineFromVo(lineVo);
 
@@ -118,9 +121,8 @@ public class SinusoidalPointsExample extends MinkoExampleApplication {
     private function createLineFromVo(lineVo:LineVo):Mesh {
 
         var parameters:Object = {pointSize:lineVo.pointSize, amplitude:lineVo.amplitude, frequence:lineVo.frequence, moveX:0, shift:lineVo.shift, offsetX:lineVo.offsetX};
-        if (!lineVo.randomize) parameters.disableShift = true;
 
-        var line:Mesh = new Mesh(new SinusoidalPointsGeometry(lineVo.numPoints, lineVo.color, lineVo.alpha, lineVo.randomize),
+        var line:Mesh = new Mesh(new SinusoidalPointsGeometry(lineVo.numPoints * global_particles, lineVo.color, lineVo.alpha, lineVo.randomize),
                 new Material(
                         _shaderEffect,
                         parameters
