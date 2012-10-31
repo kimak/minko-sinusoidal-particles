@@ -17,14 +17,13 @@ public class SinusoidalPointsExample extends MinkoExampleApplication {
 
     public function SinusoidalPointsExample() {
         // Set this property to choose mobile target for stage.fullscreenWidth value instead of wrong stage.stageWidth value
-        this.buildForMobile = true;
+        this.buildForMobile = false;
 
         super();
     }
 
-    override protected function initializeScene():void {
 
-        _shaderEffect = new Effect(new SinusoidalPointsShader());
+    override protected function initializeScene():void {
 
         super.initializeScene();
 
@@ -32,6 +31,8 @@ public class SinusoidalPointsExample extends MinkoExampleApplication {
     }
 
     private function createLines():void {
+
+        _shaderEffect = new Effect(new SinusoidalPointsShader());
 
         var lineVo:LineVo = new LineVo();
 
@@ -61,7 +62,6 @@ public class SinusoidalPointsExample extends MinkoExampleApplication {
         lineVo.color = 0.0;
         lineVo.offsetX = -0.05;
         createLineFromVo(lineVo);
-
 
         lineVo.numPoints = stageWidth * 0.5;
         lineVo.y = 0;
@@ -120,7 +120,7 @@ public class SinusoidalPointsExample extends MinkoExampleApplication {
 
     private function createLineFromVo(lineVo:LineVo):Mesh {
 
-        var parameters:Object = {pointSize:lineVo.pointSize, amplitude:lineVo.amplitude, frequence:lineVo.frequence, moveX:0, shift:lineVo.shift, offsetX:lineVo.offsetX};
+        var parameters:Object = {pointSize:lineVo.pointSize,resize:1, amplitude:lineVo.amplitude, frequence:lineVo.frequence, moveX:0, shift:lineVo.shift, offsetX:lineVo.offsetX};
 
         var line:Mesh = new Mesh(new SinusoidalPointsGeometry(lineVo.numPoints * GLOBAL_PARTICLES, lineVo.color, lineVo.alpha, lineVo.randomize),
                 new Material(
@@ -156,6 +156,7 @@ public class SinusoidalPointsExample extends MinkoExampleApplication {
 
         super.enterFrameHandler(event);
     }
+
 
 }
 }

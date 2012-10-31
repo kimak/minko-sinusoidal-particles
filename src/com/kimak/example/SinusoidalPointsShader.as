@@ -49,7 +49,7 @@ public class SinusoidalPointsShader extends Shader {
     }
 
 
-    override protected function getVertexPosition():SFloat {
+    override protected function getVertexPosition():SFloat{
 
         var amplitude:SFloat = meshBindings.getParameter('amplitude', 1);
         var shiftValue:SFloat = meshBindings.getParameter('shift', 1);
@@ -74,7 +74,7 @@ public class SinusoidalPointsShader extends Shader {
         var random:SFloat = getVertexAttribute(RANDOM_OFFSET).x;
 
         var posX:SFloat = subtract(position.x, multiply(moveX, random));
-        var repeatX:SFloat = modulo(posX, float(1))
+        var repeatX:SFloat = modulo(posX, 1);
         position.x = subtract(repeatX, 0.5);
 
         var pi:SFloat = float(2 * Math.PI);
@@ -92,7 +92,7 @@ public class SinusoidalPointsShader extends Shader {
     }
 
 
-    override protected function getPixelColor():SFloat {
+    override protected function getPixelColor():SFloat{
 
         var xy:SFloat = interpolate(getVertexAttribute(POINT_OFFSET).xy);
         var d:SFloat = dotProduct2(xy, xy);

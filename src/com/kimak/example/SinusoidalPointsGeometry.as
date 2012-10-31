@@ -26,11 +26,11 @@ public class SinusoidalPointsGeometry extends Geometry {
             var randomAlpha:Number;
 
             if (randomize) {
-                posX = -0.5 + 1 * Math.random();
+                posX = -0.5+1* Math.random();
                 randomSpeed = 0.5 + Math.random() * 0.5;
                 randomAlpha = alpha + Math.random() * (1 - alpha);
             } else {
-                posX = -0.5 + x / numPoints
+                posX = -0.5 + x / numPoints;
                 randomSpeed = 1;
                 randomAlpha = alpha;
             }
@@ -40,16 +40,6 @@ public class SinusoidalPointsGeometry extends Geometry {
             var o:uint = x << 2;
             var phase:Number = -5 + Math.random() * 02.5;
             var speed:Number = Math.random() * 0.001;
-
-
-            if (x == -1) {
-                r = 255;
-                g = 0;
-                b = 0;
-            } else {
-                r = g = b = color;
-            }
-
 
             vertices.push(
                     phase, speed, randomSpeed, randomAlpha, -1.5, .5, posX, posY, posZ, r, g, b,

@@ -8,6 +8,8 @@ import aerys.minko.type.log.DebugLevel;
 import aerys.monitor.Monitor;
 
 import flash.display.Sprite;
+import flash.display.StageAlign;
+import flash.display.StageScaleMode;
 import flash.events.Event;
 
 public class MinkoExampleApplication extends Sprite {
@@ -31,17 +33,24 @@ public class MinkoExampleApplication extends Sprite {
     }
 
     public function MinkoExampleApplication() {
+
         if (stage)
             initialize();
         else
             addEventListener(Event.ADDED_TO_STAGE, initialize);
+
     }
 
     private function initialize(event:Event = null):void {
         removeEventListener(Event.ADDED_TO_STAGE, initialize);
 
-        _viewport = new Viewport(0, stageWidth, stageHeight);
 
+        if (!this.buildForMobile) {
+            stage.scaleMode = StageScaleMode.NO_SCALE;
+            stage.align = StageAlign.TOP_LEFT;
+        }
+
+        _viewport = new Viewport(0, stageWidth, stageHeight);
         stage.addChildAt(_viewport, 0);
 
         initializeScene();
@@ -85,6 +94,10 @@ public class MinkoExampleApplication extends Sprite {
 
     public function set buildForMobile(value:Boolean):void {
         _buildForMobile = value;
+    }
+
+    public function get buildForMobile():Boolean {
+        return _buildForMobile;
     }
 }
 }
